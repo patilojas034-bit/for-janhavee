@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Invitation 💌</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.card {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+    max-width: 350px;
+    position: relative;
+}
+
+h1 {
+    color: #ff4b5c;
+}
+
+p {
+    font-size: 18px;
+    color: #444;
+}
+
+.date {
+    font-weight: bold;
+    color: #ff4b5c;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.yes-btn {
+    background-color: #ff4b5c;
+    color: white;
+}
+
+.yes-btn:hover {
+    background-color: #ff1e3c;
+    transform: scale(1.1);
+}
+
+.no-btn {
+    background-color: #ccc;
+    color: #333;
+    position: absolute;
+}
+
+.hidden-message {
+    display: none;
+    margin-top: 20px;
+    font-size: 20px;
+    color: #ff4b5c;
+    animation: pop 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.hearts {
+    position: absolute;
+    bottom: -50px;
+    font-size: 24px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-110vh); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+    <h1 id="greeting"></h1>
+
+    <p>Will you go on a date with me?</p>
+    <p class="date">22 February 2025</p>
+    <p>at Aloree Kitchen & Bar ✨</p>
+
+    <button class="yes-btn" onclick="showMessage()">Yes 💖</button>
+    <button class="no-btn" id="noBtn">No 🙈</button>
+
+    <div class="hidden-message" id="message">
+        Yaaay Janhavee! I can't wait to see you 😘
+    </div>
+</div>
+
+<script>
+// Dynamic Name
+const name = "Janhavee";
+document.getElementById("greeting").innerText = "Hey " + name + " ❤️";
+
+// Yes Button
+function showMessage() {
+    document.getElementById("message").style.display = "block";
+}
+
+// Runaway No Button
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+// Floating Hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("hearts");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
+</script>
+
+</body>
+</html>
